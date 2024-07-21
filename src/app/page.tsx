@@ -1,100 +1,174 @@
 import Image from "next/image";
+import ProductPage from "./product-page";
+
+export interface Product {
+  id: number;
+  modelId: string;
+  title?: string | null;
+  publishedOn?: string | null;
+  width?: number | null;
+  depth?: number | null;
+  length?: number | null;
+  height?: number | null;
+  openWidth?: number | null;
+  openHeight?: number | null;
+  price?: number | null;
+  suggestedPrice?: number | null;
+  effectivePrice?: number | null;
+  onSale?: boolean | null;
+  color?: string | null;
+  description?: string | null;
+  googleFeed?: boolean | null;
+  stock?: number | null;
+  featuredItem?: boolean | null;
+  searchImages?:
+    | {
+        image?: number | Media | null;
+        id?: string | null;
+      }[]
+    | null;
+  images?:
+    | {
+        image?: number | Media | null;
+        id?: string | null;
+      }[]
+    | null;
+  relatedProducts?:
+    | {
+        relatedProduct?: (number | null) | Product;
+        id?: string | null;
+      }[]
+    | null;
+  slug?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: number | Media | null;
+  };
+}
+
+export interface Media {
+  id: number;
+  alt?: string | null;
+  prefix?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    tablet?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    full?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
+}
+
+const product: Product = {
+  id: 1,
+  modelId: "MFP-2999",
+  title: "Elegant Marble Fireplace Mantel",
+  description:
+    "This exquisite marble fireplace mantel features intricate hand-carved details and a timeless design. Perfect for adding a touch of luxury to any living space.",
+  width: 72,
+  depth: 18,
+  height: 54,
+  price: 8500,
+  suggestedPrice: 12000,
+  onSale: true,
+  color: "white",
+  searchImages: [
+    {
+      image: {
+        id: 1,
+        alt: "Elegant Marble Fireplace Mantel",
+        url: "/image1.webp",
+        width: 800,
+        height: 600,
+      } as Media,
+    },
+  ],
+  images: [
+    {
+      image: {
+        id: 2,
+        alt: "Front view of Elegant Marble Fireplace Mantel",
+        url: "/image2.webp",
+        width: 1200,
+        height: 900,
+      } as Media,
+    },
+    {
+      image: {
+        id: 3,
+        alt: "Side view of Elegant Marble Fireplace Mantel",
+        url: "/image3.webp",
+        width: 1200,
+        height: 900,
+      } as Media,
+    },
+    {
+      image: {
+        id: 4,
+        alt: "Close-up of carved details",
+        url: "/image4.webp",
+        width: 1200,
+        height: 900,
+      } as Media,
+    },
+    {
+      image: {
+        id: 5,
+        alt: "Fireplace mantel in room setting",
+        url: "/image5.webp",
+        width: 1200,
+        height: 900,
+      } as Media,
+    },
+    {
+      image: {
+        id: 6,
+        alt: "Fireplace mantel dimensions",
+        url: "/image6.webp",
+        width: 1200,
+        height: 900,
+      } as Media,
+    },
+  ],
+};
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm text-center sm:text-left">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file-text.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+  return <ProductPage product={product} related={[]} />;
 }
